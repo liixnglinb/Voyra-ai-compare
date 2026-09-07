@@ -1,6 +1,6 @@
 ﻿name: Sync to Voyra
 
-# 鏈粨搴?push 鍚庯紝鎶?AI 妯″瀷瀵规瘮绉€ 浠ｇ爜鑷姩鍚屾杩?Voyra 涓讳粨搴撳苟瑙﹀彂閮ㄧ讲
+# 本仓库 push 后，把 AI 模型对比秀 代码自动同步进 Voyra 主仓库并触发部署
 on:
   push:
     branches: [main]
@@ -22,7 +22,7 @@ jobs:
 
       - name: Sync files
         run: |
-          cp "src\pages\PelicanGallery.jsx" "voyra/src\pages\PelicanGallery.jsx"
+          cp "src/pages/PelicanGallery.jsx" "voyra/src/pages/PelicanGallery.jsx"
 
       - name: Commit & push to Voyra
         run: |
@@ -31,8 +31,8 @@ jobs:
           git config user.email "liixnglinb@users.noreply.github.com"
           git add voyra/src/pages/PelicanGallery.jsx
           if git diff --cached --quiet; then
-            echo "鏃犱唬鐮佸彉鏇达紝璺宠繃鎻愪氦"
+            echo "无代码变更，跳过提交"
             exit 0
           fi
-          git commit -m "chore(voyra-ai-compare): 鑷姩鍚屾鑷?voyra-ai-compare ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git commit -m "chore(voyra-ai-compare): 自动同步自 voyra-ai-compare ($(date -u +%Y-%m-%dT%H:%MZ))"
           git push
