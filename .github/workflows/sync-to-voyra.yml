@@ -29,10 +29,11 @@ jobs:
           cd voyra
           git config user.name "voyra-ai-compare-sync[bot]"
           git config user.email "liixnglinb@users.noreply.github.com"
-          git add voyra/src/pages/PelicanGallery.jsx
+          git add src/pages/PelicanGallery.jsx
           if git diff --cached --quiet; then
             echo "无代码变更，跳过提交"
             exit 0
           fi
           git commit -m "chore(voyra-ai-compare): 自动同步自 voyra-ai-compare ($(date -u +%Y-%m-%dT%H:%MZ))"
           git push
+
