@@ -1,0 +1,16 @@
+﻿{
+    "version":  "1.0.0",
+    "name":  "voyra-ai-compare",
+    "license":  "MIT",
+    "description":  "AI 妯″瀷瀵规瘮绉€ 路 鍚屼竴棰樸€岄箞楣曢獞鑷杞︺€嶄氦缁?16 涓?AI 妯″瀷鐢熸垚 SVG 鍔ㄧ敾涓€椤靛姣旓紙Voyra 妯″潡锛墊 AI model comparison showcase",
+    "keywords":  [
+                     "ai",
+                     "comparison",
+                     "showcase",
+                     "models",
+                     "react",
+                     "svg",
+                     "AI 妯″瀷瀵规瘮绉€"
+                 ],
+    "private":  true
+}

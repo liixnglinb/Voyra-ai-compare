@@ -1,0 +1,38 @@
+﻿name: Sync to Voyra
+
+# 鏈粨搴?push 鍚庯紝鎶?AI 妯″瀷瀵规瘮绉€ 浠ｇ爜鑷姩鍚屾杩?Voyra 涓讳粨搴撳苟瑙﹀彂閮ㄧ讲
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout voyra-ai-compare
+        uses: actions/checkout@v4
+
+      - name: Checkout Voyra main repo
+        uses: actions/checkout@v4
+        with:
+          repository: liixnglinb/Voyra
+          token: ${{ secrets.VOYRA_SYNC_TOKEN }}
+          path: voyra
+
+      - name: Sync files
+        run: |
+          cp "src\pages\PelicanGallery.jsx" "voyra/src\pages\PelicanGallery.jsx"
+
+      - name: Commit & push to Voyra
+        run: |
+          cd voyra
+          git config user.name "voyra-ai-compare-sync[bot]"
+          git config user.email "liixnglinb@users.noreply.github.com"
+          git add voyra/src/pages/PelicanGallery.jsx
+          if git diff --cached --quiet; then
+            echo "鏃犱唬鐮佸彉鏇达紝璺宠繃鎻愪氦"
+            exit 0
+          fi
+          git commit -m "chore(voyra-ai-compare): 鑷姩鍚屾鑷?voyra-ai-compare ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push
