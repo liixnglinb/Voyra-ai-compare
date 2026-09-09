@@ -4,7 +4,7 @@
 
 **同一道题交给 16 个 AI 模型，一页看完所有答案 ｜ One prompt, 16 AI models, side-by-side on one page**
 
-[![Sync to Voyra](https://github.com/liixnglinb/voyra-ai-compare/actions/workflows/sync-to-voyra.yml/badge.svg)](https://github.com/liixnglinb/voyra-ai-compare/actions/workflows/sync-to-voyra.yml)
+[![Sync to Voyra](https://github.com/liixnglinb/Voyra-ai-compare/actions/workflows/sync-to-voyra.yml/badge.svg)](https://github.com/liixnglinb/Voyra-ai-compare/actions/workflows/sync-to-voyra.yml)
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
 ![SVG](https://img.shields.io/badge/SVG-2D_Animation-FFB13B?logo=svg&logoColor=white)
@@ -63,7 +63,7 @@ src/
 
 ```mermaid
 flowchart LR
-  A["本仓库<br/>voyra-ai-compare"] -->|git push| B["GitHub Actions"]
+  A["本仓库<br/>Voyra-ai-compare"] -->|git push| B["GitHub Actions"]
   B -->|同步 PelicanGallery.jsx| C["Voyra 主仓库"]
   C -->|自动构建| D["Cloudflare Pages"]
   D --> E["lxlrwxs.top/#/pelican-gallery"]
