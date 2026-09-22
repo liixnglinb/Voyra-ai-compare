@@ -35,5 +35,14 @@ jobs:
             exit 0
           fi
           git commit -m "chore(Voyra-ai-compare): 自动同步自 Voyra-ai-compare ($(date -u +%Y-%m-%dT%H:%MZ))"
-          git push
+          # 多个独立仓库同批 push 时会撞 non-fast-forward（实测 2026-09-22 四个仓同秒推送，
+          # ai-compare 的同步被拒后直接失败，线上少一个产品）。被拒就 rebase 远端再试。
+          # 冲突只可能是同一文件被两边改过 = 真漂移，此时 abort 并失败，绝不静默丢改动。
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "push 被拒（第 $i 次），拉取远端 rebase 后重试"
+            git pull --rebase origin main || { git rebase --abort; echo "rebase 冲突：同一文件被两边改过，需人工处理"; exit 1; }
+            sleep $(( (RANDOM % 6) + 3 ))
+          done
+          echo "重试 5 次仍推送失败"; exit 1
 
